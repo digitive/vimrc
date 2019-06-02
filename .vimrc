@@ -22,6 +22,7 @@ call plug#end()
 
 colorscheme codedark
 autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+autocmd BufWritePre * :%s/\s+$//e
 nnoremap <C-p> :FZF<CR>
 set number
 let g:airline_powerline_fonts = 1
@@ -33,9 +34,12 @@ let g:airline#extensions#tabline#enabled = 1
 let g:go_def_mapping_enabled = 0
 
 set tabstop=4
+set shiftwidth=4
 set autowrite
 set mouse=a
 set clipboard=unnamedplus
+set undofile                 "turn on the feature  
+set undodir=$HOME/.vim/undo  "directory where the undo files will be stored
 
 let g:fzf_action = {
  \ 'ctrl-t': 'tab split',
@@ -60,6 +64,8 @@ let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 nnoremap gk :bn<CR>
 nnoremap gp :bp<CR>
 nnoremap gd :bd<CR>
+nnoremap <leader>rg :Rg <C-R><C-W><CR>
+nnoremap <silent> <leader>- :Files <C-r>=expand("%:h")<CR>/<CR>
 
 " -------------------------------------------------------------------------------------------------
 " coc.nvim default settings
